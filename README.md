@@ -77,3 +77,28 @@ UTXO只能是已花费或者未花费状态，这就没有给需要任何其它�
 ### GHOST协议(GHOST protocol)
     GHOST = Greedy Heaviest Observed Subtree
     GHOST协议就是让我们必须选择一个在其上完成计算最多的路径。一个方法确定路径就是使用最近一个区块（叶子区块）的区块号，区块号代表着当前路径上总的区块数（不包含创世纪区块）。区块号越大，路径就会越长，就说明越多的挖矿算力被消耗在此路径上以达到叶子区块。
+### 以太坊部署Smart Contract的步骤
+- Solidity编写的合约代码编译后提取abi与bytecode
+- 使用web3.eth.contract(abi_json_object)函数创建合约对象
+
+### MacOS安装Solidity及solc编译器
+- sudo npm install -g solc solc-cli --save-dev
+- brew update
+- brew upgrade
+- brew tap ethereum/ethereum
+- brew install solidity
+- brew linkapps solidity
+- brew link --overwrite solidity
+
+### 以太坊智能合约字节码反编译器 polosity
+- git clone https://github.com/comaeio/porosity
+- brew install boost
+- cd porosity/porosity/porosity
+- make
+- ./porosity --help
+
+
+### web3.js与智能合约的交互(以投票举例)
+- 获取合约对象 var cur_contract = eth.contract(abi).at(contract_address)
+- 解锁账户 personal.unlock(eth.accounts[0], password_of_account)
+- 发起投票 cur_contract.vote.sendTransaction(1, {from: eth.accounts[0]})
